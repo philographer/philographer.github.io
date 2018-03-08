@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (2) | Philographer&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="DevOps" />
+    
+    <meta name="description" content="React Native 프로젝트에서 Fastlane을 사용하기 (IOS편)  아래 내용은 Getting Started · React Native 에 따라서 기본 환경을 구성했다는 전제 하에 진행됩니다.  React Native Project 만들기 우선 샘플 프로젝트를 하나 만들도록 한다. 주의할 점은 create-react-native-app로 만들지 말">
+<meta name="keywords" content="DevOps">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (2)">
+<meta property="og:url" content="http://yoursite.com/2018/02/15/circleci-rn2/index.html">
+<meta property="og:site_name" content="Philographer&#39;s Blog">
+<meta property="og:description" content="React Native 프로젝트에서 Fastlane을 사용하기 (IOS편)  아래 내용은 Getting Started · React Native 에 따라서 기본 환경을 구성했다는 전제 하에 진행됩니다.  React Native Project 만들기 우선 샘플 프로젝트를 하나 만들도록 한다. 주의할 점은 create-react-native-app로 만들지 말">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://docs.fastlane.tools/img/fastlane_text.png">
+<meta property="og:updated_time" content="2018-03-08T05:00:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (2)">
+<meta name="twitter:description" content="React Native 프로젝트에서 Fastlane을 사용하기 (IOS편)  아래 내용은 Getting Started · React Native 에 따라서 기본 환경을 구성했다는 전제 하에 진행됩니다.  React Native Project 만들기 우선 샘플 프로젝트를 하나 만들도록 한다. 주의할 점은 create-react-native-app로 만들지 말">
+<meta name="twitter:image" content="https://docs.fastlane.tools/img/fastlane_text.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/conference/">Conference</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/conference/dev/">Dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/devops/">DevOps</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retropect/">Retropect</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retropect/personal/">Personal</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/">Retrospect</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/competition/">Competition</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/personal/">Personal</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/vcs/">Vcs</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/vcs/git/">Git</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/tip/">tip</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/devops/">DevOps</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-circleci-rn2" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (2)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/02/15/circleci-rn2/" class="article-date">
+            <time datetime="2018-02-15T10:38:24.000Z" itemprop="datePublished">2018-02-15</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/devops/">DevOps</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="React-Native-프로젝트에서-Fastlane을-사용하기-IOS편"><a href="#React-Native-프로젝트에서-Fastlane을-사용하기-IOS편" class="headerlink" title="React Native 프로젝트에서 Fastlane을 사용하기 (IOS편)"></a>React Native 프로젝트에서 Fastlane을 사용하기 (IOS편)</h1><p><img src="https://docs.fastlane.tools/img/fastlane_text.png" alt="fastlane"></p>
+<blockquote>
+<p>아래 내용은 <a href="https://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="noopener">Getting Started · React Native</a> 에 따라서 기본 환경을 구성했다는 전제 하에 진행됩니다.</p>
+</blockquote>
+<h1 id="React-Native-Project-만들기"><a href="#React-Native-Project-만들기" class="headerlink" title="React Native Project 만들기"></a>React Native Project 만들기</h1><blockquote>
+<p>우선 샘플 프로젝트를 하나 만들도록 한다. 주의할 점은 <code>create-react-native-app</code>로 만들지 말아야 한다는 것이다. <code>crna</code>로 프로젝트를 만들면 <code>expo</code>로 동작하는 데 이용하면, 네이티브 프로젝트를 만들고 <strong>Native Code</strong>를 <strong>Testing</strong> 하는 것이 불가능하다.</p>
+</blockquote>
+<ul>
+<li>아래 명령어로, project를 init한다.<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ react-native init DevOpsForRN <span class="comment"># Native Project Initialize</span></span><br><span class="line">$ <span class="built_in">cd</span> DevOpsForRN</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Fastlane을-Native-Project-Directory-에서-사용하기"><a href="#Fastlane을-Native-Project-Directory-에서-사용하기" class="headerlink" title="Fastlane을 Native Project Directory 에서 사용하기"></a><code>Fastlane</code>을 Native Project Directory 에서 사용하기</h1><ul>
+<li>아래 서술하는 내용은 공식 문서와 동일하다.<br><a href="https://docs.fastlane.tools/getting-started/ios/setup/" target="_blank" rel="noopener">IOS Setup - fastlane docs</a><br><a href="https://docs.fastlane.tools/getting-started/android/setup/" target="_blank" rel="noopener">Android Setup - fastlane docs</a></li>
+</ul>
+<ul>
+<li><p>우선 fastlane을 사용하기 위해서는 글로벌로 설치를 해야 한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Using RubyGems</span></span><br><span class="line">$ sudo gem install fastlane -NV</span><br><span class="line">$ sudo gem install bundler</span><br><span class="line"></span><br><span class="line"><span class="comment"># 위 명령어가 실행 불가능 하다면 대안으로 아래 명령어를 실행한다.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Alternatively using Homebrew</span></span><br><span class="line">$ brew cask install fastlane</span><br><span class="line">$ sudo gem install bundler</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>첫 번째로 ios 폴더에 들어가서 초기화를 진행한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ios <span class="comment"># DevOpsForRN/ios</span></span><br><span class="line">$ fastlane init <span class="comment"># 초기화</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>다음과 같이 어느 걸 하고 싶으냐고 나올 텐데 우리는 여러 가지 일들을 manual하고 싶으니 4번을 선택한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[13:48:34]: What would you like to use fastlane for?</span><br><span class="line">1. 📸  Automate screenshots</span><br><span class="line">2. 👩‍✈️  Automate beta distribution to TestFlight</span><br><span class="line">3. 🚀  Automate App Store distribution</span><br><span class="line">4. 🛠  Manual setup - manually setup your project to automate</span><br><span class="line">$ 4</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>명령어를 치고나면</p>
+<ul>
+<li><code>DevOpsForRN/ios/fastlane/Appfile</code> -&gt; 프로젝트나 account config(app_identifier, apple_id)</li>
+<li><code>DevOpsForRN/ios/fastlane/Fastfile</code> -&gt; 실제 돌릴 명령어들을 정의</li>
+<li><code>DevOpsForRN /ios/fastlane/Readme</code> -&gt; 설명서, lane을 추가할때 자동으로 변경됨</li>
+<li><code>DevOpsForRN /ios/fastlane/report.xml</code> -&gt; fastlane 명령어를 돌릴때마다 변경되는 report 문서</li>
+</ul>
+<blockquote>
+<p>실제로는 <code>Appfile</code> 은 정해진 계정, <strong>bundle identifier</strong>등을 맨 처음 한번만 정의하면 되고 <code>Fastfile</code>의 경우는 <strong>lane(작업들의 집합)</strong>을 정의할 때만 수정하면 된다.<br>다음 빌드로 넘어가기 전에, 한 가지를 짚고 가야 한다. <strong>IOS</strong> 에서는 <strong>Code Signing</strong>이라는 개념이 굉장히 중요하다. <strong>Code Signing을 하지 않으면 Beta testing service에 올리거나, App Store에 Deploy 할 수 없다.</strong><br><code>Fastlane</code>에는  <strong>3가지 signing 방법</strong>이 있다.</p>
+</blockquote>
+<h1 id="Fastlane의-3가지-Signing"><a href="#Fastlane의-3가지-Signing" class="headerlink" title="Fastlane의 3가지 Signing"></a>Fastlane의 3가지 Signing</h1><ul>
+<li><strong>Match</strong> -&gt; <strong>private key</strong>와 <strong>certificates</strong>를 <code>git</code>에 암호화하여 보관하고, 이를 가지고 signing하는 방법</li>
+<li><strong>Cert and Sigh</strong> -&gt; private key와 certificates를  <code>local</code>에서 가지고 있고, 이를 signing하는 방법</li>
+<li><strong>Manual</strong> -&gt; Apple Developer Portal에서  <code>.p12</code>, <code>.cer</code>, <code>. mobileprovision</code>을 직접 signing 하는 방법</li>
+</ul>
+<blockquote>
+<p>1번 방법(Match)<strong>이 암호화된 인증서를 git에 올리는 게 다소 이상할 수 있지만  이 방식은 생각보다 안전하고, </strong>새로운 팀 멤버가 들어올 경우<strong> 아니면 </strong>새로운 개발 장비를 세팅 할때도 쉽고 간편<strong>하므로 </strong>1번 방법**으로 선택했다.<br><code>Code Signing</code>에 대하여 더 자세히 이해하고 싶다면 <a href="https://codesigning.guide/" target="_blank" rel="noopener">Code Signing Guide for Teams</a> 문서를 참조하자.</p>
+</blockquote>
+<h1 id="Apple-Developer-Portal에서-Bundle-Identifier-생성"><a href="#Apple-Developer-Portal에서-Bundle-Identifier-생성" class="headerlink" title="Apple Developer Portal에서 Bundle Identifier 생성"></a>Apple Developer Portal에서 Bundle Identifier 생성</h1><ul>
+<li><a href="https://developer.apple.com/account/ios/identifier/bundle" target="_blank" rel="noopener">Apple Developer Portal</a> 에서 <strong>bundle identifier</strong>를 만든다</li>
+<li>좌측 탭에서 <strong>Identifiers</strong> -&gt; <strong>App IDs</strong></li>
+<li>우측 상단에 <strong>+</strong> 버튼 클릭</li>
+<li>앱 이름을 입력</li>
+<li><code>com.teammondrian.devopsrn</code> 와 같은 당신이 만들 <strong>identifier</strong> 입력</li>
+<li><strong>Done</strong>을 클릭<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/apple-create-bundleid.png?raw=true" alt="apple-create-bundleid"></li>
+</ul>
+<h1 id="Fastlane-설정-파일-수정"><a href="#Fastlane-설정-파일-수정" class="headerlink" title="Fastlane 설정 파일 수정"></a>Fastlane 설정 파일 수정</h1><p>다음은 <a href="https://docs.fastlane.tools/actions/match/" target="_blank" rel="noopener">match - fastlane docs</a> 을 따라 하는 내용과 동일하다</p>
+<ul>
+<li>첫번째로 <strong>private key</strong>와 <strong>certificate</strong>를 담을 <a href="https://github.com/new" target="_blank" rel="noopener">Github Repository</a>를 새로 하나 생성한다.</li>
+<li><p>주의할 점이 하나 있는데 민감한 정보를 담기 때문에 <strong>Private Repository</strong> 로 만들어야 한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DevOpsForRN/ios 폴더에서 진행한다.</span></span><br><span class="line">$ fastlane match init</span><br><span class="line"><span class="comment"># 명령어를 입력하고, 방금전 만든 github-repo주소를 넣는다.</span></span><br><span class="line">$ fastlane match appstore</span><br><span class="line"><span class="comment"># 애플 아이디와 비밀번호를 묻는다.</span></span><br><span class="line"><span class="comment"># 이전에 만든 `com.teammondrian.devopsrn` 와 같은 identifier를 입력한다</span></span><br><span class="line"><span class="comment"># passphrase -&gt; 파일들을 암호화할 비밀번호를 입력한다. (자기가 만들 비밀번호)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>그러면 <code>DevOpsForRN/ios/fastlane/Matchfile</code>이 만들어 지는데, 다음과 동일하도록 수정한다.</p>
+</li>
+<li><code>type &quot;development&quot;</code> 를 <code>type &quot;appstore&quot;</code> 로 수정한다.</li>
+<li><code>app_identifier [&quot;com.teammondrian.devopsrn&quot;]</code>에서 <code>com.teammondrian.devopsrn</code> 를 당신의 <strong>Bundle Identifier</strong>로 변경한 후 추가한다.</li>
+<li><p><code>username &quot;yoohoogun114@naver.com&quot;</code> 와 같이 이메일을 당신의 <strong>Apple ID</strong>로 변경후 추가한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git_url &quot;https://github.com/philographer/create-react-bootstrap-match.git&quot; # 당신이 생성한 git repo의 주소를 입력</span><br><span class="line"></span><br><span class="line">type &quot;appstore&quot; # 기본값은 development이지만, appstore로 수정한다. appstore, adhoc, enterprise or development가 될 수 있다.</span><br><span class="line"></span><br><span class="line">app_identifier [&quot;com.teammondrian.devopsrn&quot;] # 당신이 생성한 bundle identifier 입력</span><br><span class="line">username &quot;yoohoogun114@naver.com&quot; # 당신의 apple id로 수정</span><br><span class="line"></span><br><span class="line"># For all available options run `fastlane match --help`</span><br><span class="line"># Remove the # in the beginning of the line to enable the other options</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>DevOpsForRN/ios/fastlane/Fastfile</code> 도 파일이 다음과 동일하도록 수정한다.</p>
+</li>
+<li><p>아래 부분에서, <code>&quot;com.teammondrian.devopsrn”</code> 로 되어 있는 부분을 당신의 <strong>Bundle Identifier</strong>로 변경한다.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file contains the fastlane.tools configuration</span></span><br><span class="line"><span class="comment"># You can find the documentation at https://docs.fastlane.tools</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For a list of all available actions, check out</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#     https://docs.fastlane.tools/actions</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the line if you want fastlane to automatically update itself</span></span><br><span class="line"><span class="comment"># update_fastlane</span></span><br><span class="line"></span><br><span class="line">default_platform(<span class="symbol">:ios</span>)</span><br><span class="line"></span><br><span class="line">platform <span class="symbol">:ios</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">"Build and run tests"</span></span><br><span class="line">  lane <span class="symbol">:test</span> <span class="keyword">do</span></span><br><span class="line">    scan(<span class="symbol">scheme:</span> <span class="string">"DevOpsForRN"</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  lane <span class="symbol">:beta</span> <span class="keyword">do</span></span><br><span class="line">    desc <span class="string">"TesfFlight for IOS"</span></span><br><span class="line">    <span class="comment"># Circle CI does not create new code signing certificates or provisioning profiles.</span></span><br><span class="line">    sync_code_signing(<span class="symbol">type:</span> <span class="string">"appstore"</span>, <span class="symbol">readonly:</span> <span class="literal">true</span>, <span class="symbol">app_identifier:</span> <span class="string">"com.teammondrian.devopsrn"</span>) <span class="comment"># Bundle Identifier를 아까 만든 값으로 치환한다.</span></span><br><span class="line">    <span class="comment"># see code signing guide for more information, readonly because of CircleCI</span></span><br><span class="line">    build_app(<span class="symbol">scheme:</span> <span class="string">"DevOpsForRN"</span>)</span><br><span class="line">    upload_to_testflight(<span class="symbol">skip_waiting_for_build_processing:</span> <span class="literal">true</span>)</span><br><span class="line">    <span class="comment"># slack(</span></span><br><span class="line">    <span class="comment">#   slack_url: "https://hooks.slack.com/services/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"</span></span><br><span class="line">    <span class="comment">#   channel: "dev",</span></span><br><span class="line">    <span class="comment">#   message: "Successfully uploaded a fastlane beta release"</span></span><br><span class="line">    <span class="comment"># )</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">lane <span class="symbol">:increase_build_number_and_push_to_beta</span> <span class="keyword">do</span> <span class="params">|values|</span></span><br><span class="line">    <span class="comment"># Increment the build number (not the version number)</span></span><br><span class="line">    <span class="comment"># Providing the xcodeproj is optional</span></span><br><span class="line">    increment_build_number(<span class="symbol">xcodeproj:</span> <span class="string">"DevOpsForRN.xcodeproj"</span>)</span><br><span class="line">    <span class="comment"># Commit the version bump</span></span><br><span class="line">    commit_version_bump(<span class="symbol">xcodeproj:</span> <span class="string">"DevOpsForRN.xcodeproj"</span>, <span class="symbol">force:</span> <span class="literal">true</span>)</span><br><span class="line">    <span class="comment"># Add a git tag for this build. This will automatically</span></span><br><span class="line">    <span class="comment"># use an appropriate git tag name</span></span><br><span class="line">    add_git_tag</span><br><span class="line">    <span class="comment"># Push the new commit and tag back to your git remote</span></span><br><span class="line">    push_to_git_remote(</span><br><span class="line">        <span class="symbol">remote_branch:</span> <span class="string">"beta"</span>, <span class="comment"># optional, default is set to local_branch</span></span><br><span class="line">        <span class="symbol">force:</span> <span class="literal">true</span>,    <span class="comment"># optional, default: false</span></span><br><span class="line">    )</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>DevOpsForRN/ios/fastlane/Appfile</code> 도 파일이 다음과 동일하도록 수정한다.</p>
+</li>
+<li><code>app_identifier &quot;com.teammondrian.com&quot;</code> 에서 <code>com.teammondrian.com</code> 부분을 당신의 <strong>Bundle Identifier</strong> 로 변경 후 추가한다.</li>
+<li><p><code>apple_id &quot;yoohoogun114@naver.com&quot;</code> 와 같이 이메일을 당신의 <strong>Apple ID</strong>로 변경후 추가한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app_identifier &quot;com.teammondrian.com&quot; # The bundle identifier of your app</span><br><span class="line">apple_id &quot;yoohoogun114@naver.com&quot; # Your Apple email address</span><br><span class="line"></span><br><span class="line"># For more information about the Appfile, see:</span><br><span class="line">#     https://docs.fastlane.tools/advanced/#appfile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>IOS의 경우, TestFlight에 올리려면 <strong>Image Assets</strong> 들을 올려야 한다.  테스트 용도이므로, <a href="https://www.flaticon.com/" target="_blank" rel="noopener">Free vector icons</a> 에서 자기가 원하는 이미지를 선택하고<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/use_asset_catalog.png?raw=true" alt="use_asset_catalog.png"></p>
+</li>
+</ul>
+<p><strong>Use Asset Catalog</strong>를 클릭하고 필요한 Aseets들을 집어넣는다.<br>작성자는 <a href="https://itunes.apple.com/kr/app/asset-catalog-creator-pro/id809625456?mt=12" target="_blank" rel="noopener">Asset Catalog Creator Pro</a> 를 사용하였지만, 인터넷에서 다른 <strong>Asset Generator</strong>를 사용해도 무관하다.</p>
+<h1 id="Itunse-Connect-앱-등록"><a href="#Itunse-Connect-앱-등록" class="headerlink" title="Itunse-Connect 앱 등록"></a>Itunse-Connect 앱 등록</h1><ul>
+<li><a href="https://itunesconnect.apple.com/login" target="_blank" rel="noopener">iTunes Connect</a>에 로그인</li>
+<li>나의 앱 -&gt; + 버튼 -&gt; 신규 앱</li>
+<li>플랫폼 -&gt; ios 체크</li>
+<li>나머지 내용들을 채우고, <strong>번들 ID</strong> 는 이전에 Developer Portal에서 만든 <strong>Bundle Identifier</strong>를 선택한다.<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/itunes-create-app.png?raw=true" alt="itunes-create-app"></li>
+</ul>
+<h1 id="Fastlane-on-the-CircleCI"><a href="#Fastlane-on-the-CircleCI" class="headerlink" title="Fastlane on the CircleCI"></a>Fastlane on the CircleCI</h1><p>이제 대망의 <code>CircleCI</code>와 <code>Fastlane</code>을 연동할 차례이다. 이를 위해서는 <a href="https://docs.fastlane.tools/best-practices/continuous-integration/#circleci-integration" target="_blank" rel="noopener">Continuous Integration - fastlane docs</a> 문서를 따라해보자.</p>
+<ul>
+<li><p><code>DevOpsForRN/ios/fastlane/Fastfile</code> 경로에 다음과 같이 추가하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># DevOpsForRN/ios/fastlane/Fastfile</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">platform :ios do</span><br><span class="line">  before_all do</span><br><span class="line">    setup_circle_ci</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">	desc &quot;Build and run tests&quot;</span><br><span class="line">...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>DevOpsForRN/ios/fastlane/Fastfile</code> 의 완성된 내용은 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"># This file contains the fastlane.tools configuration</span><br><span class="line"># You can find the documentation at https://docs.fastlane.tools</span><br><span class="line">#</span><br><span class="line"># For a list of all available actions, check out</span><br><span class="line">#</span><br><span class="line">#     https://docs.fastlane.tools/actions</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line"># Uncomment the line if you want fastlane to automatically update itself</span><br><span class="line"># update_fastlane</span><br><span class="line"></span><br><span class="line">default_platform(:ios)</span><br><span class="line"></span><br><span class="line">platform :ios do</span><br><span class="line">  before_all do</span><br><span class="line">    setup_circle_ci</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  desc &quot;Build and run tests&quot;</span><br><span class="line">  lane :test do</span><br><span class="line">    scan</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  lane :beta do</span><br><span class="line">    desc &quot;TesfFlight for IOS&quot;</span><br><span class="line">    # Circle CI does not create new code signing certificates or provisioning profiles.</span><br><span class="line">    sync_code_signing(type: &quot;appstore&quot;, readonly: true, app_identifier: &quot;com.teammondrian.devopsrn&quot;) # Bundle Identifier를 아까 만든 값으로 치환한다.</span><br><span class="line">    # see code signing guide for more information, readonly because of CircleCI</span><br><span class="line">    build_app(scheme: &quot;DevOpsForRN&quot;)</span><br><span class="line">    upload_to_testflight(skip_waiting_for_build_processing: true)</span><br><span class="line">    # slack(</span><br><span class="line">    #   slack_url: &quot;https://hooks.slack.com/services/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&quot;</span><br><span class="line">    #   channel: &quot;dev&quot;,</span><br><span class="line">    #   message: &quot;Successfully uploaded a fastlane beta release&quot;</span><br><span class="line">    # )</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">lane :increase_build_number_and_push_to_beta do |values|</span><br><span class="line">    # Increment the build number (not the version number)</span><br><span class="line">    # Providing the xcodeproj is optional</span><br><span class="line">    increment_build_number(xcodeproj: &quot;DevOpsForRN.xcodeproj&quot;)</span><br><span class="line">    # Commit the version bump</span><br><span class="line">    commit_version_bump(xcodeproj: &quot;DevOpsForRN.xcodeproj&quot;, force: true)</span><br><span class="line">    # Add a git tag for this build. This will automatically</span><br><span class="line">    # use an appropriate git tag name</span><br><span class="line">    add_git_tag</span><br><span class="line">    # Push the new commit and tag back to your git remote</span><br><span class="line">    push_to_git_remote(</span><br><span class="line">        remote_branch: &quot;beta&quot;, # optional, default is set to local_branch</span><br><span class="line">        force: true,    # optional, default: false</span><br><span class="line">    )</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>DevOpsForRN</code> 폴더 안에 <code>.circleci</code>라는 디렉토리를 만든다.</p>
+</li>
+<li><code>DevOpsForRN/.circleci/config.yml</code> 에는 다음의 내용을 추가하자<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"># .circleci/config.yml</span><br><span class="line"></span><br><span class="line"># To Validate your config.yml then use this cli.</span><br><span class="line"># `$ circleci config validate -c .circleci/config.yml`</span><br><span class="line">version: 2</span><br><span class="line">jobs:</span><br><span class="line">  build:</span><br><span class="line">    working_directory: ~/project</span><br><span class="line">    docker:</span><br><span class="line">      - image: circleci/node:8</span><br><span class="line">    steps:</span><br><span class="line">      - checkout</span><br><span class="line">      - run: yarn</span><br><span class="line">      - run: yarn run test</span><br><span class="line">      - persist_to_workspace:</span><br><span class="line">          root: ~/project</span><br><span class="line">          paths:</span><br><span class="line">            - node_modules</span><br><span class="line">      - store_test_results:</span><br><span class="line">          path: ~/project/junit.xml</span><br><span class="line"></span><br><span class="line">  beta-deploy-ios:</span><br><span class="line">    working_directory: ~/project/ios</span><br><span class="line">    macos:</span><br><span class="line">      xcode: &quot;9.0&quot;</span><br><span class="line">    steps:</span><br><span class="line">      - checkout:</span><br><span class="line">          path: ~/project</span><br><span class="line">      - attach_workspace:</span><br><span class="line">          at: ~/project</span><br><span class="line">      - run: bundle update fastlane</span><br><span class="line">      - run: bundle exec fastlane beta</span><br><span class="line"></span><br><span class="line">  ios:</span><br><span class="line">    macos:</span><br><span class="line">      xcode: &quot;9.0&quot;</span><br><span class="line">    working_directory: ~/project/ios</span><br><span class="line">    environment:</span><br><span class="line">      FL_OUTPUT_DIR: ~/project/output</span><br><span class="line">    shell: /bin/bash --login -o pipefail</span><br><span class="line">    steps:</span><br><span class="line">      - checkout:</span><br><span class="line">          path: ~/project</span><br><span class="line">      - run:</span><br><span class="line">          name: Set Ruby Version</span><br><span class="line">          command:  echo &quot;ruby-2.4&quot; &gt; ~/.ruby-version</span><br><span class="line">      # Not using a workspace here as Node and Yarn versions</span><br><span class="line">      # differ between the macOS image and the Docker containers above.</span><br><span class="line">      - run: yarn</span><br><span class="line">      - run: bundle install --path vendor/bundle</span><br><span class="line">      - persist_to_workspace:</span><br><span class="line">          root: ~/project</span><br><span class="line">          paths:</span><br><span class="line">            - ios</span><br><span class="line">      - run: bundle exec fastlane test</span><br><span class="line">      - store_artifacts:</span><br><span class="line">          path: ~/project/output</span><br><span class="line">      - store_test_results:</span><br><span class="line">          path: ~/project/output/scan</span><br><span class="line"></span><br><span class="line">workflows:</span><br><span class="line">  version: 2</span><br><span class="line">  node-android-ios:</span><br><span class="line">    jobs:</span><br><span class="line">      - build</span><br><span class="line">      - ios:</span><br><span class="line">          requires:</span><br><span class="line">            - build</span><br><span class="line">      - beta-deploy-ios:</span><br><span class="line">          filters:</span><br><span class="line">            branches:</span><br><span class="line">              only:</span><br><span class="line">                - beta</span><br><span class="line">          requires:</span><br><span class="line">            - ios</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>CircleCI</code>에서 Code Signing, Fastlane Match를 이용하기 위해서는 다소 많은 <strong>초기 작업</strong>이 필요하다. 다음 문서를 따라 하면 일련의 초기화, key setting 작업을 완료할 수 있다. <a href="https://circleci.com/docs/2.0/ios-codesigning/" target="_blank" rel="noopener">Setting Up Code Signing for iOS Projects - CircleCI</a></p>
+<ul>
+<li><p>Github에 프로젝트 모두 올리기<br><a href="https://github.com/new" target="_blank" rel="noopener">Github Repository</a>를 새로 하나 생성한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DevOpsForRN/ 디렉토리에서 진행한다.</span></span><br><span class="line">$ git init</span><br><span class="line">$ git remote add origin https://github.com/philographer/DevOpsForRN.git <span class="comment"># 자신의 repo 주소로 변경하기</span></span><br><span class="line">$ git add --all</span><br><span class="line">$ git commit -m <span class="string">"first commit"</span></span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CircleCI의 Project를 생성한다.</p>
+</li>
+<li><a href="https://circleci.com/dashboard" target="_blank" rel="noopener">CircleCI - Dashboard</a> 접속</li>
+<li><strong>MacOS 빌드는 유료이므로, 무료 플랜을 선택한다.</strong></li>
+<li>좌측 <strong>Settings</strong> -&gt; <strong>MacOS Plan</strong> -&gt; <strong>Trial Plan</strong> Click</li>
+<li>좌측 <strong>Project</strong> 탭 클릭 -&gt; <strong>Add Project</strong> 클릭</li>
+<li>방금 만든 Github Repo의 오른쪽에 <strong>Setup Project</strong> 버튼을 클릭</li>
+<li>OS는 <strong>macOS</strong> 선택</li>
+<li><strong>Start Build</strong> 버튼 선택</li>
+<li>Work-Flow 탭으로 이동되는데, 자세히 보려면 빌드 이름을 누르면 된다.</li>
+<li><p>다음과 같이 보이면 성공이다.<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/circleci_ios_build.png?raw=true" alt="circleci_ios_build.png"></p>
+</li>
+<li><p>CircleCI의 <strong>Project Setting</strong> -&gt; <strong>Environment Variables</strong> -&gt; <strong>Add Variable</strong> 을 클릭하고, 다음의 환경변수들을 추가한다.<br><code>MATCH_PASSWORD</code>: 아까 만든 match pass phrase 입력<br><code>FASTLANE_USER</code>: Apple ID 입력 (ex. <code>yoohoogun114@naver.com</code>)<br><code>FASTLANE_PASSWORD</code>:  Apple PW 입력<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/circleci_ios_env.png?raw=true" alt="circleci_ios_env.png"></p>
+</li>
+<li><p>CircleCI의 <strong>Project Setting</strong> -&gt; <strong>Checkout SSH Keys</strong> -&gt; <strong>Add Deploy Key</strong> 버튼 또는 <strong>Create and add … user key</strong> 버튼을 클릭한다.<br>그렇다면 후에 CI에서 debug 해야 할 ssh-key를 자동으로 vm에 미리 넣어준다. 따라서 미리 지정해둔 계정에서는 ci vm에 접근할 수 있다.<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/circleci_ssh.png?raw=true" alt="circleci_ssh.png"></p>
+</li>
+</ul>
+<h2 id="Trigger-Script-작성"><a href="#Trigger-Script-작성" class="headerlink" title="Trigger Script 작성"></a>Trigger Script 작성</h2><ul>
+<li><code>DevOpsForRN/package.json</code> 파일을 다음과 같이 수정한다</li>
+<li><code>scripts</code>에 <code>native-test</code>  추가</li>
+<li><p><code>scripts</code>에 <code>beta</code>  추가</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"DevOpsForRN"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"0.0.1"</span>,</span><br><span class="line">  <span class="attr">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"start"</span>: <span class="string">"node node_modules/react-native/local-cli/cli.js start"</span>,</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"jest"</span>,</span><br><span class="line">    "native-test": "tools/run_native_test.sh", # 추가</span><br><span class="line">    "beta": "tools/run_beta_deploy.sh", # 변경</span><br><span class="line">  &#125;,</span><br><span class="line">  "dependencies": &#123;</span><br><span class="line">    "react": "16.2.0",</span><br><span class="line">    "react-native": "0.52.1",</span><br><span class="line">    "react-native-fabric": "^0.5.1"</span><br><span class="line">  &#125;,</span><br><span class="line">  "devDependencies": &#123;</span><br><span class="line">    "babel-jest": "22.1.0",</span><br><span class="line">    "babel-preset-react-native": "4.0.0",</span><br><span class="line">    "jest": "22.1.4",</span><br><span class="line">    "react-test-renderer": "16.2.0"</span><br><span class="line">  &#125;,</span><br><span class="line">  "jest": &#123;</span><br><span class="line">    "preset": "react-native"</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Shell Script 작성하기</p>
+</li>
+<li><code>DevOpsForRN/tools</code> 디렉토리를 생성한다</li>
+<li><p><code>DevOpsForRN/tools/run_beta_deploy.sh</code> 파일을 생성하고, 다음의 내용을 작성한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ios</span><br><span class="line">fastlane increase_build_number_and_push_to_beta</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>DevOpsForRN/tools/run_native_test.sh</code> 파일을 생성하고, 다음의 내용을 작성한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ios</span><br><span class="line">fastlane <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>작성한 후, 권한을 부여한다</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ chmod +x run_beta_deploy.sh</span><br><span class="line">$ chmod +x run_beta_deploy.sh</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Xcode-Signing-설정"><a href="#Xcode-Signing-설정" class="headerlink" title="Xcode Signing 설정"></a>Xcode Signing 설정</h1><ul>
+<li>fastlane에서 사용할 인증서를 선택한다.<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/xcode_sign.png?raw=true" alt="xcode_sign.png"></li>
+</ul>
+<h1 id="TestFlight에-사용자-초대"><a href="#TestFlight에-사용자-초대" class="headerlink" title="TestFlight에 사용자 초대"></a>TestFlight에 사용자 초대</h1><ul>
+<li><a href="https://itunesconnect.apple.com/" target="_blank" rel="noopener">iTunes Connect</a> 에 접속</li>
+<li>나의 앱 -&gt; 자신이 이전에 만들었던 앱 클릭</li>
+<li>TestFlight 탭 클릭</li>
+<li>테스터 및 그룹 -&gt; Itunes Connect 사용자 클릭</li>
+<li><ul>
+<li>버튼 누르고, 사용자 초대</li>
+</ul>
+</li>
+<li>초대한 사용자의 이메일에서 초대 수락<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/itunes_invite.png?raw=true" alt="itunes_invite"></li>
+</ul>
+<h1 id="암호화"><a href="#암호화" class="headerlink" title="암호화"></a>암호화</h1><ul>
+<li>앱 내 추가 기능</li>
+<li>암호화 탭의 지침에 따른다.<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/ios_encrypt.png?raw=true" alt="ios_encrypt"></li>
+</ul>
+<h1 id="작성한-내용-검증하기"><a href="#작성한-내용-검증하기" class="headerlink" title="작성한 내용 검증하기"></a>작성한 내용 검증하기</h1><p>다음의 스크립트를 실행했을 때, Circle CI에서 work-flow가 올바르게 실행되나 지켜본다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DevOps/ 디렉토리에서</span></span><br><span class="line">$ npm run beta</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><a href="https://circleci.com/dashboard" target="_blank" rel="noopener">CircleCI Dashboard</a> 접속</li>
+<li>다음과 같이 JS Test -&gt; IOS Native Test -&gt; TestFlight Deploy가 성공했는지 확인<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/circleci_ios_success.png?raw=true" alt="circleci_ios_success.png"></li>
+</ul>
+<h1 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h1><ul>
+<li><a href="https://philographer.github.io/2018/02/15/circleci-rn3/" target="_blank" rel="noopener">Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (3)</a></li>
+<li><a href="https://philographer.github.io/2018/02/15/circleci-rn4/" target="_blank" rel="noopener">Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)</a></li>
+</ul>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://docs.fastlane.tools/actions/match/#is-this-secure" target="_blank" rel="noopener">match is-this-secure? - fastlane docs</a><br><a href="https://github.com/CircleCI-Public/circleci-demo-react-native" target="_blank" rel="noopener">GitHub - CircleCI-Public/circleci-demo-react-native: A demo React Native project that’s building on CircleCI 2.0 with Workflows.</a><br><a href="https://medium.com/react-native-training/fastlane-for-react-native-ios-android-app-devops-8ca85bee614e" target="_blank" rel="noopener">fastlane for React Native iOS &amp; Android app DevOps – React Native Training – Medium</a><br><a href="https://github.com/CircleCI-Public/circleci-demo-workflows/blob/workspace-forwarding/.circleci/config.yml" target="_blank" rel="noopener">circleci-demo-workflows/config.yml at workspace-forwarding · CircleCI-Public/circleci-demo-workflows · GitHub</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/02/15/circleci-rn2/" data-id="cjeil8rpi000dltpps6smedat" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/philographer" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="linkedin-square" href="https://www.linkedin.com/in/yuhogyun" target="_blank">
+                        <i class="icon fa fa-linkedin-square"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook-square" href="https://www.facebook.com/yoohoogun114" target="_blank">
+                        <i class="icon fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/02/15/circleci-rn3/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (3)
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/02/15/circleci-rn1/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (1)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/08/mdtconv/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/03/08/mdtconv/mdtconv-logo.jpg)" alt="경디공 3기 활동 마무리 후기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/retropect/">Retropect</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/retropect/personal/">Personal</a></p>
+                            <p class="item-title"><a href="/2018/03/08/mdtconv/" class="title">경디공 3기 활동 마무리 후기</a></p>
+                            <p class="item-date"><time datetime="2018-03-08T05:01:15.000Z" itemprop="datePublished">2018-03-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/06/talentx/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/03/06/talentx/talentx-logo.png)" alt="Talent X 1기 합격 후기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/retrospect/">Retrospect</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/retrospect/personal/">Personal</a></p>
+                            <p class="item-title"><a href="/2018/03/06/talentx/" class="title">Talent X 1기 합격 후기</a></p>
+                            <p class="item-date"><time datetime="2018-03-06T01:32:22.000Z" itemprop="datePublished">2018-03-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/16/gitignore-ds-store/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/02/16/gitignore-ds-store/gitignore.png)" alt=".DS_Store 파일을 git에 포함시키지 않기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/tip/">tip</a></p>
+                            <p class="item-title"><a href="/2018/02/16/gitignore-ds-store/" class="title">.DS_Store 파일을 git에 포함시키지 않기</a></p>
+                            <p class="item-date"><time datetime="2018-02-16T10:31:33.000Z" itemprop="datePublished">2018-02-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/15/vscode-open-bash/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.stack.imgur.com/Ng886.png)" alt="Bash에서 Visual Studio Code 열기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/tip/">tip</a></p>
+                            <p class="item-title"><a href="/2018/02/15/vscode-open-bash/" class="title">Bash에서 Visual Studio Code 열기</a></p>
+                            <p class="item-date"><time datetime="2018-02-15T14:56:26.000Z" itemprop="datePublished">2018-02-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/15/circleci-rn4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.ytimg.com/vi/Qp-BA9e0TnA/maxresdefault.jpg)" alt="Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/devops/">DevOps</a></p>
+                            <p class="item-title"><a href="/2018/02/15/circleci-rn4/" class="title">Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)</a></p>
+                            <p class="item-date"><time datetime="2018-02-15T10:38:28.000Z" itemprop="datePublished">2018-02-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/conference/">Conference</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/conference/dev/">Dev</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/devops/">DevOps</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/retropect/">Retropect</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/retropect/personal/">Personal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/">Retrospect</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/competition/">Competition</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/personal/">Personal</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vcs/">Vcs</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vcs/git/">Git</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tip/">tip</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">-tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">Conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">Dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">DevOps</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/retrospect/">retrospect</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vcs/">vcs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/경디공/">경디공</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/tip/" style="font-size: 10px;">-tip</a> <a href="/tags/conference/" style="font-size: 10px;">Conference</a> <a href="/tags/dev/" style="font-size: 10px;">Dev</a> <a href="/tags/devops/" style="font-size: 20px;">DevOps</a> <a href="/tags/devops/" style="font-size: 10px;">devops</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/retrospect/" style="font-size: 15px;">retrospect</a> <a href="/tags/tip/" style="font-size: 10px;">tip</a> <a href="/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/tags/vcs/" style="font-size: 15px;">vcs</a> <a href="/tags/경디공/" style="font-size: 10px;">경디공</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Philographer</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/02/15/circleci-rn2/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

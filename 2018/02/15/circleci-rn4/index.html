@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4) | Philographer&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="DevOps" />
+    
+    <meta name="description" content="1. 개요우리는 지금까지  Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (1) Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (2) Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (3)을 거쳐서 iOS, Android 모두 구성을 마">
+<meta name="keywords" content="DevOps">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)">
+<meta property="og:url" content="http://yoursite.com/2018/02/15/circleci-rn4/index.html">
+<meta property="og:site_name" content="Philographer&#39;s Blog">
+<meta property="og:description" content="1. 개요우리는 지금까지  Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (1) Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (2) Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (3)을 거쳐서 iOS, Android 모두 구성을 마">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.ytimg.com/vi/Qp-BA9e0TnA/maxresdefault.jpg">
+<meta property="og:updated_time" content="2018-03-08T05:00:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)">
+<meta name="twitter:description" content="1. 개요우리는 지금까지  Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (1) Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (2) Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (3)을 거쳐서 iOS, Android 모두 구성을 마">
+<meta name="twitter:image" content="https://i.ytimg.com/vi/Qp-BA9e0TnA/maxresdefault.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/conference/">Conference</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/conference/dev/">Dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/devops/">DevOps</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retropect/">Retropect</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retropect/personal/">Personal</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/">Retrospect</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/competition/">Competition</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/personal/">Personal</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/vcs/">Vcs</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/vcs/git/">Git</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/tip/">tip</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/devops/">DevOps</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-circleci-rn4" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/02/15/circleci-rn4/" class="article-date">
+            <time datetime="2018-02-15T10:38:28.000Z" itemprop="datePublished">2018-02-15</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/devops/">DevOps</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="1-개요"><a href="#1-개요" class="headerlink" title="1. 개요"></a>1. 개요</h1><p><img src="https://i.ytimg.com/vi/Qp-BA9e0TnA/maxresdefault.jpg" alt="DevOps"><br>우리는 지금까지</p>
+<ul>
+<li>Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (1)</li>
+<li>Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (2)</li>
+<li>Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (3)<br>을 거쳐서 iOS, Android 모두 구성을 마쳤다. 이제 앞에서 진행했던 <strong>JS Test</strong>-&gt; <strong>Native Test</strong> -&gt; <strong>Beta Test Deploy</strong> 과정을 <strong>모두 자동화</strong>해보자.</li>
+</ul>
+<h1 id="2-package-json에-Script-추가하기"><a href="#2-package-json에-Script-추가하기" class="headerlink" title="2. package.json에 Script 추가하기"></a>2. package.json에 Script 추가하기</h1><p><code>DevOpsForRN/package.json</code>에 <code>beta</code> script를 추가되어 있는지 확인한다.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "start": "node node_modules/react-native/local-cli/cli.js start",</span><br><span class="line">    "test": "jest",</span><br><span class="line">    "beta": "cd ios &amp;&amp; fastlane increase_build_number_and_push_to_beta" # 변경</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure></p>
+<h1 id="3-Fastlane-Slack-Notify-추가하기"><a href="#3-Fastlane-Slack-Notify-추가하기" class="headerlink" title="3. Fastlane Slack Notify 추가하기"></a>3. Fastlane Slack Notify 추가하기</h1><p>모든 작업이 완료되었을 때 <code>Slack</code>으로 <strong>Notification</strong>을 받기 위한 설정은 다음과 같다.<br><code>DevOpsForRN/ios/fastlane/Fastfile</code> 파일의 <code>beta lane</code> 에 <code>slack</code> 부분을 추가한다.<br><a href="http://seotory.tistory.com/24" target="_blank" rel="noopener">slack(슬랙), incoming webhooks 을 사용해보자. - seotory</a>의 블로그 아티클이 도움이 될 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  lane :beta do</span><br><span class="line">    desc &quot;TesfFlight for IOS&quot;</span><br><span class="line">	  ...</span><br><span class="line">    ...</span><br><span class="line">    slack(</span><br><span class="line">		slack_url: &quot;https://hooks.slack.com/services/*******/********/******************&quot;</span><br><span class="line">	    channel: &quot;dev&quot;,</span><br><span class="line">	    message: &quot;Successfully uploaded a fastlane beta release&quot;</span><br><span class="line">    )</span><br><span class="line">    end</span><br><span class="line">    ...		</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<h1 id="4-작성한-내용-검증하기"><a href="#4-작성한-내용-검증하기" class="headerlink" title="4. 작성한 내용 검증하기"></a>4. 작성한 내용 검증하기</h1><p>위 설정이 올바르게 되어있으면 다음의 커맨드를 입력하였을 때 <strong>ios의 빌드 넘버를 변경</strong>하고 git의 <code>beta</code> branch에 변경내용을 <strong>push</strong>한다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run deploy</span><br></pre></td></tr></table></figure></p>
+<p>우리가 설정한 <strong>테스트</strong> -&gt; <strong>빌드</strong> -&gt; <strong>베타</strong> 배포의 과정이 완료되었다면 다음과 같은 화면을 볼 수 있다.<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/circleci-success.png?raw=true" alt="CircleCI-Success"></p>
+<h1 id="ETC-S3-Static-Hosting으로-보여주기"><a href="#ETC-S3-Static-Hosting으로-보여주기" class="headerlink" title="ETC: S3 Static Hosting으로 보여주기"></a>ETC: S3 Static Hosting으로 보여주기</h1><p><a href="https://github.com/rufuspollock/s3-bucket-listing" target="_blank" rel="noopener">s3-bucket-listing</a> 플러그인을 이용하면 S3 대시보드에 직접 접속하지 않아도 Static Website Hosting처럼 S3의 내용을 표시할 수 있다.<br><img src="https://github.com/philographer/DevOpsForRN/blob/master/images/static-hosting.png?raw=true" alt="static-hosting"><br>Demo: <a href="http://devops-react-native.s3-website.ap-northeast-2.amazonaws.com/?prefix=apk/" target="_blank" rel="noopener">S3 Bucket Listing Generator</a></p>
+<h1 id="ETC-Build-Error"><a href="#ETC-Build-Error" class="headerlink" title="ETC: Build Error"></a>ETC: Build Error</h1><p>혹시나 CircleCI에서 다음과 같은 에러로 빌드가 되지 않는 경우도 있다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bundle: Done writing bundle output</span><br><span class="line">:app:bundleReleaseJsAndAssets FAILED</span><br><span class="line"></span><br><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">Execution failed <span class="keyword">for</span> task <span class="string">':app:bundleReleaseJsAndAssets'</span>.</span><br><span class="line">&gt; Process <span class="string">'command '</span>node<span class="string">''</span> finished with non-zero <span class="built_in">exit</span> value 137</span><br></pre></td></tr></table></figure></p>
+<p><strong>해결방법:</strong> 이유는 모르겠지만 첫 번들링이 실행이 안되는 경우도 있는 것 같다. 해결방법은 첫 번들링을 로컬에서 실행해주고 remote로 올려서 CircleCI가 overwrite하게 하는 방법이다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir android/app/src/main/assets</span><br><span class="line">$ react-native bundle --platform android --dev <span class="literal">false</span> --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/</span><br><span class="line">$ git add --all</span><br><span class="line">$ git commit -m <span class="string">'Added bundle.android.js'</span></span><br><span class="line">$ git push origin master</span><br><span class="line">$ npm run beta</span><br></pre></td></tr></table></figure></p>
+<p>Ref: <a href="https://github.com/facebook/react-native/issues/11696" target="_blank" rel="noopener">https://github.com/facebook/react-native/issues/11696</a></p>
+<h1 id="자동화된-과정들-정리"><a href="#자동화된-과정들-정리" class="headerlink" title="자동화된 과정들 정리"></a>자동화된 과정들 정리</h1><p><strong>React Naitve</strong>의 <strong>Beta Testing</strong>을 자동화 하기 위하여 지금까지 작성한 내용은 다음과 같다.</p>
+<ol>
+<li><code>$ npm run deploy</code> 커맨드를 입력한다 (Developer)</li>
+<li>IOS Project의 Build Number를 1 증가시킨다. (Fastlane local)</li>
+<li><code>Git</code>의 <code>beta</code> Branch에 코드를 push한다. (Fastlane local)</li>
+<li><code>Github</code>이 Webhook을 통해 <code>CircleCI</code>가 <code>beta</code> Branch에 코드가 커밋된 사실을 알아챈다. (Github)</li>
+<li><code>CircleCI</code>가 <code>beta</code> Branch에 대하여 JS Test -&gt; ios, android 각각 빌드 -&gt; Native 테스트 -&gt; 배포의 과정을 실행한다. (CircleCI)</li>
+<li>ios의 경우 미리 지정한 사용자에게 <code>TestFlight</code>가 전송된다. (Fasltnae on CircleCI)</li>
+<li>Android의 경우 미리 지정한 <code>S3</code> Bucket에 Release APK가 업로드된다. (Fasltnae on CircleCI)</li>
+<li>Slack Message를 미리 지정한 채널에 전송한다. (Fasltnae on CircleCI)<br>따라서 일련의 과정을 그려보면 다음과 동일하다.<br><img src="https://raw.githubusercontent.com/philographer/DevOpsForRN/master/images/ci-cd-flow-completed.png" alt="flow-completed"></li>
+</ol>
+<h1 id="데모-프로젝트"><a href="#데모-프로젝트" class="headerlink" title="데모 프로젝트"></a>데모 프로젝트</h1><p>아래 Github에는 지금까지 적용했던 모든 사항들이 적용되어 있다. 혹시 세부적인 세팅이 궁금하다면 참조하자.<br><a href="https://github.com/philographer/DevOpsForRN" target="_blank" rel="noopener">https://github.com/philographer/DevOpsForRN</a></p>
+<h1 id="마무리하며"><a href="#마무리하며" class="headerlink" title="마무리하며"></a>마무리하며</h1><p>지금까지 <strong>FaceBook</strong>의 하이브리드 앱 프레임워크인 <strong>React Native</strong>의 <strong>CI/CD Flow</strong>를 구축해 보았다.</p>
+<p>이용자의 Needs가 점점 다양해지면서 비즈니스 또한 그 기대에 부응하기 위하여 발 빠르게 움직여야 하는 시대가 되었다. 이에 따라서 개발자들 또한 여러 가지 <strong>Unit/integration test, beta test, build</strong> 들을 자동화하지 않고는 고객들의 요구사항을 맞출 수 없는 상황에 이르렀다. 보다 품질이 보증되는 소프트웨어를 만들기 위한 노력은 소프트웨어 생태계가 발전하면서</p>
+<p>만약, 팀의 누군가 한 명이 자발적으로 이런 <strong>DevOps</strong>에 관심을 가지고 <strong>자동화</strong>를 한 번만 잘 적용해 놓는다면 팀 모두의 <strong>생산성</strong>과 <strong>코드의 품질</strong>을 높일 수 있다. 이제는 <strong>DevOps</strong>에 대하여 깊이 있게 알지 못하더라도, 여러 가지 좋은 <strong>서비스</strong>가 시장에 많이 나와 있으므로 작은 비용의 <strong>유료 Plan</strong>이나 <strong>Open Source</strong> 잘 조합하여 적용한다면 팀에게도 <strong>생산성</strong>과 <strong>코드 품질</strong>에 큰 도움이 되지 않을까 생각한다.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/02/15/circleci-rn4/" data-id="cjeil8rpl000iltpp8ej90q0o" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/philographer" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="linkedin-square" href="https://www.linkedin.com/in/yuhogyun" target="_blank">
+                        <i class="icon fa fa-linkedin-square"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook-square" href="https://www.facebook.com/yoohoogun114" target="_blank">
+                        <i class="icon fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/02/15/vscode-open-bash/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Bash에서 Visual Studio Code 열기
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/02/15/circleci-rn3/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (3)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/08/mdtconv/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/03/08/mdtconv/mdtconv-logo.jpg)" alt="경디공 3기 활동 마무리 후기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/retropect/">Retropect</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/retropect/personal/">Personal</a></p>
+                            <p class="item-title"><a href="/2018/03/08/mdtconv/" class="title">경디공 3기 활동 마무리 후기</a></p>
+                            <p class="item-date"><time datetime="2018-03-08T05:01:15.000Z" itemprop="datePublished">2018-03-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/06/talentx/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/03/06/talentx/talentx-logo.png)" alt="Talent X 1기 합격 후기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/retrospect/">Retrospect</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/retrospect/personal/">Personal</a></p>
+                            <p class="item-title"><a href="/2018/03/06/talentx/" class="title">Talent X 1기 합격 후기</a></p>
+                            <p class="item-date"><time datetime="2018-03-06T01:32:22.000Z" itemprop="datePublished">2018-03-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/16/gitignore-ds-store/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/02/16/gitignore-ds-store/gitignore.png)" alt=".DS_Store 파일을 git에 포함시키지 않기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/tip/">tip</a></p>
+                            <p class="item-title"><a href="/2018/02/16/gitignore-ds-store/" class="title">.DS_Store 파일을 git에 포함시키지 않기</a></p>
+                            <p class="item-date"><time datetime="2018-02-16T10:31:33.000Z" itemprop="datePublished">2018-02-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/15/vscode-open-bash/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.stack.imgur.com/Ng886.png)" alt="Bash에서 Visual Studio Code 열기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/tip/">tip</a></p>
+                            <p class="item-title"><a href="/2018/02/15/vscode-open-bash/" class="title">Bash에서 Visual Studio Code 열기</a></p>
+                            <p class="item-date"><time datetime="2018-02-15T14:56:26.000Z" itemprop="datePublished">2018-02-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/15/circleci-rn4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.ytimg.com/vi/Qp-BA9e0TnA/maxresdefault.jpg)" alt="Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/devops/">DevOps</a></p>
+                            <p class="item-title"><a href="/2018/02/15/circleci-rn4/" class="title">Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)</a></p>
+                            <p class="item-date"><time datetime="2018-02-15T10:38:28.000Z" itemprop="datePublished">2018-02-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/conference/">Conference</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/conference/dev/">Dev</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/devops/">DevOps</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/retropect/">Retropect</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/retropect/personal/">Personal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/">Retrospect</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/competition/">Competition</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/personal/">Personal</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vcs/">Vcs</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vcs/git/">Git</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tip/">tip</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">-tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">Conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">Dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">DevOps</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/retrospect/">retrospect</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vcs/">vcs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/경디공/">경디공</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/tip/" style="font-size: 10px;">-tip</a> <a href="/tags/conference/" style="font-size: 10px;">Conference</a> <a href="/tags/dev/" style="font-size: 10px;">Dev</a> <a href="/tags/devops/" style="font-size: 20px;">DevOps</a> <a href="/tags/devops/" style="font-size: 10px;">devops</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/retrospect/" style="font-size: 15px;">retrospect</a> <a href="/tags/tip/" style="font-size: 10px;">tip</a> <a href="/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/tags/vcs/" style="font-size: 15px;">vcs</a> <a href="/tags/경디공/" style="font-size: 10px;">경디공</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Philographer</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/02/15/circleci-rn4/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

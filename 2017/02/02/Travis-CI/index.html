@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>travis-ci | Philographer&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="devops" />
+    
+    <meta name="description" content="들어가면서사실 CI Tool은 그동안 쓸 일이 많지 않았다. 그마저도 직접 쓴 적은 없고, Openstack 관련해서 Software maestro에서 1차 팀 프로젝트를 진행할 때 옆에서 팀원이 Jenkins를 사용하는 것을 본 것이 전부이다. 현재 맡은 업무가 프론트쪽에 가까워서 시스템 쪽으로 따로 공부할 일도 없지만, 오픈소스 프로젝트들을 보면 무조건">
+<meta name="keywords" content="devops">
+<meta property="og:type" content="article">
+<meta property="og:title" content="travis-ci">
+<meta property="og:url" content="http://yoursite.com/2017/02/02/Travis-CI/index.html">
+<meta property="og:site_name" content="Philographer&#39;s Blog">
+<meta property="og:description" content="들어가면서사실 CI Tool은 그동안 쓸 일이 많지 않았다. 그마저도 직접 쓴 적은 없고, Openstack 관련해서 Software maestro에서 1차 팀 프로젝트를 진행할 때 옆에서 팀원이 Jenkins를 사용하는 것을 본 것이 전부이다. 현재 맡은 업무가 프론트쪽에 가까워서 시스템 쪽으로 따로 공부할 일도 없지만, 오픈소스 프로젝트들을 보면 무조건">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2017/02/02/Travis-CI/ci.jpg">
+<meta property="og:updated_time" content="2018-03-08T05:00:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="travis-ci">
+<meta name="twitter:description" content="들어가면서사실 CI Tool은 그동안 쓸 일이 많지 않았다. 그마저도 직접 쓴 적은 없고, Openstack 관련해서 Software maestro에서 1차 팀 프로젝트를 진행할 때 옆에서 팀원이 Jenkins를 사용하는 것을 본 것이 전부이다. 현재 맡은 업무가 프론트쪽에 가까워서 시스템 쪽으로 따로 공부할 일도 없지만, 오픈소스 프로젝트들을 보면 무조건">
+<meta name="twitter:image" content="http://yoursite.com/2017/02/02/Travis-CI/ci.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/conference/">Conference</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/conference/dev/">Dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/devops/">DevOps</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retropect/">Retropect</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retropect/personal/">Personal</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/">Retrospect</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/competition/">Competition</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/personal/">Personal</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/vcs/">Vcs</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/vcs/git/">Git</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/tip/">tip</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/devops/">DevOps</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Travis-CI" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        travis-ci
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/02/02/Travis-CI/" class="article-date">
+            <time datetime="2017-02-01T16:10:36.000Z" itemprop="datePublished">2017-02-02</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/devops/">devops</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="들어가면서"><a href="#들어가면서" class="headerlink" title="들어가면서"></a>들어가면서</h1><p>사실 CI Tool은 그동안 쓸 일이 많지 않았다. 그마저도 직접 쓴 적은 없고, Openstack 관련해서 Software maestro에서 1차 팀 프로젝트를 진행할 때 옆에서 팀원이 Jenkins를 사용하는 것을 본 것이 전부이다. 현재 맡은 업무가 프론트쪽에 가까워서 시스템 쪽으로 따로 공부할 일도 없지만, 오픈소스 프로젝트들을 보면 무조건 CI를 사용하고 있고, Test coverage system 또한 갖추어 놓았다. 어차피 이번 해커톤에 나가서 Auto Deployment 때문에라도 공부할 거 빨리 공부하는 게 좋다고 생각해서 포스팅을 작성한다.</p>
+<h1 id="CI-란"><a href="#CI-란" class="headerlink" title="CI 란?"></a>CI 란?</h1><img src="/2017/02/02/Travis-CI/ci.jpg" title="CI">
+<p>우선 CI란 Continuos Intergration의 줄임말이다.</p>
+<h1 id="Travis-란"><a href="#Travis-란" class="headerlink" title="Travis 란?"></a>Travis 란?</h1><img src="/2017/02/02/Travis-CI/travisLogo.jpg" title="CI">
+<h2 id="Getting-started"><a href="#Getting-started" class="headerlink" title="Getting started"></a>Getting started</h2><p>모든 개발 Document에는 Getting started가 있다. 천천히 따라해보자.<br> <a href="https://docs.travis-ci.com/user/getting-started/" target="_blank" rel="noopener">Travis CI Getting started</a><br>문서를 읽다 보니 링크를 하나 더 발견했다. <a href="https://docs.travis-ci.com/user/for-beginners" target="_blank" rel="noopener">Travis CI for Complete Beginners</a> <del>완전 초보자를 위한 문서</del><br>위 문서를 번역하면 다음과 같다.</p>
+<ol>
+<li>Test용 PHP Repository 를 Folk한다</li>
+<li><a href="https://travis-ci.org/auth" target="_blank" rel="noopener">https://travis-ci.org/auth</a>에서 github계정으로 회원가입을 하고 Travis에게 권한을 준다.</li>
+<li><a href="https://travis-ci.org/profile" target="_blank" rel="noopener">https://travis-ci.org/profile/yoohoogun114</a>에서 아까 folk한 repo를 선택한다.</li>
+<li>자신이 Folk한 Repo를 clone한다. ($ git clone 자신의리포주소)</li>
+<li>Clone한 폴더에서 <code>vi .travis.yml</code>  로 <code>.travis.yml</code> 파일의 내용을 본다.<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">php</span></span><br><span class="line"><span class="attr">php:</span></span><br><span class="line"><span class="bullet">-</span> <span class="number">5.5</span></span><br><span class="line"><span class="bullet">-</span> <span class="number">5.4</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">hhvm</span></span><br><span class="line"><span class="attr">script:</span> <span class="string">phpunit</span> <span class="string">Test.php</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>PHP 5.5버전, 5.4버전, <a href="http://hhvm.com/" target="_blank" rel="noopener">HHVM</a>(테스트 오픈소스) 이 적혀있고, 마지막 라인에는 Unit Test 파일이 적혀있다.<br><br></p>
+<p><code>vi NewUser.txt</code> 라는 명령어로 텍스트 파일을 만들고 자신의 이름을 적은 후 저장한다.</p>
+<p>그다음으로 다음 명령어를 실행하여 커밋하고, 푸시한다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add -A</span><br><span class="line">$ git commit -m <span class="string">'Testing Travis CI'</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://travis-ci.org/" target="_blank" rel="noopener">build status</a> 그러면 여기서 빌드 상태를 볼 수 있고, 빌드가 완료(성공, 실패)하면 메일이 날아간다.</p>
+<img src="/2017/02/02/Travis-CI/travis1.png" title="실패한 빌드">
+<p>처음 빌드는 무조건 실패한다.</p>
+<p>왜냐하면, 테스트 코드가 무조건 실패하도록 적혀있기 때문이다. <del>우리에게 시작하자마자 실패를 안겨주는 Travis 팀</del></p>
+<p><code>vi Test.php</code> 로 테스트 코드를 수정해보자. 테스트 라인을 <code>$this-&gt;assertEquals(1+1,2);</code>  이렇게 고치면 된다. 아래는 완성된 코드</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">PHPUnit_Framework_TestCase</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testOnePlusOne</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> <span class="keyword">$this</span>-&gt;assertEquals(<span class="number">1</span>+<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>assertEquals, $this 이런 문법은 php 문법이기에, 이 포스팅에서는 중요하지 않다. 단지 ‘php에서는 저렇게 테스트코드를 작성하는구나!’ 라는 정도로 넘어가면 된다.</p>
+<p>똑똑한 우리는 무조건 성공하는 테스트 코드를 작성하였다. 다시 commit을하자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add -A</span><br><span class="line">$ git commit -m <span class="string">'Testing Travis CI: fixing the build'</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
+<p><a href="https://travis-ci.org/" target="_blank" rel="noopener">build status</a> 다시 빌드 상태를 보면 다음과 같이 성공한다. <del>우리는 반드시 이긴다.</del></p>
+<img src="/2017/02/02/Travis-CI/travis2.png" title="성공한 빌드">
+<h1 id="마치면서"><a href="#마치면서" class="headerlink" title="마치면서"></a>마치면서</h1><p>우리는 CI가 무엇인지, Travis가 무엇인지, Travis가 우리에게 무엇을 해줄 수 있는지 알아보았다. 이제는 자신이 필요한 언어로, Travis를 어떻게 상용하는지 알아보자.<br>글쓴이는 주력 언어가 Javascript이므로 <a href="https://docs.travis-ci.com/user/languages/javascript-with-nodejs/" target="_blank" rel="noopener">Javascript-Travis</a>를 참조하도록 하겠다. 다음 포스팅은 Javascript Travis로 이어진다.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2017/02/02/Travis-CI/" data-id="cjeil8rp80006ltppmz6u1lqa" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/philographer" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="linkedin-square" href="https://www.linkedin.com/in/yuhogyun" target="_blank">
+                        <i class="icon fa fa-linkedin-square"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook-square" href="https://www.facebook.com/yoohoogun114" target="_blank">
+                        <i class="icon fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/02/07/4th-unithon/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            4회 Unithon 후기
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/01/30/Node-Express-Typescript-Mongo-project-boilerplate/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Node, Express, Typescript, Mongo project boilerplate</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/08/mdtconv/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/03/08/mdtconv/mdtconv-logo.jpg)" alt="경디공 3기 활동 마무리 후기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/retropect/">Retropect</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/retropect/personal/">Personal</a></p>
+                            <p class="item-title"><a href="/2018/03/08/mdtconv/" class="title">경디공 3기 활동 마무리 후기</a></p>
+                            <p class="item-date"><time datetime="2018-03-08T05:01:15.000Z" itemprop="datePublished">2018-03-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/06/talentx/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/03/06/talentx/talentx-logo.png)" alt="Talent X 1기 합격 후기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/retrospect/">Retrospect</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/retrospect/personal/">Personal</a></p>
+                            <p class="item-title"><a href="/2018/03/06/talentx/" class="title">Talent X 1기 합격 후기</a></p>
+                            <p class="item-date"><time datetime="2018-03-06T01:32:22.000Z" itemprop="datePublished">2018-03-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/16/gitignore-ds-store/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/02/16/gitignore-ds-store/gitignore.png)" alt=".DS_Store 파일을 git에 포함시키지 않기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/tip/">tip</a></p>
+                            <p class="item-title"><a href="/2018/02/16/gitignore-ds-store/" class="title">.DS_Store 파일을 git에 포함시키지 않기</a></p>
+                            <p class="item-date"><time datetime="2018-02-16T10:31:33.000Z" itemprop="datePublished">2018-02-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/15/vscode-open-bash/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.stack.imgur.com/Ng886.png)" alt="Bash에서 Visual Studio Code 열기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/tip/">tip</a></p>
+                            <p class="item-title"><a href="/2018/02/15/vscode-open-bash/" class="title">Bash에서 Visual Studio Code 열기</a></p>
+                            <p class="item-date"><time datetime="2018-02-15T14:56:26.000Z" itemprop="datePublished">2018-02-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/15/circleci-rn4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.ytimg.com/vi/Qp-BA9e0TnA/maxresdefault.jpg)" alt="Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/devops/">DevOps</a></p>
+                            <p class="item-title"><a href="/2018/02/15/circleci-rn4/" class="title">Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)</a></p>
+                            <p class="item-date"><time datetime="2018-02-15T10:38:28.000Z" itemprop="datePublished">2018-02-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/conference/">Conference</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/conference/dev/">Dev</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/devops/">DevOps</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/retropect/">Retropect</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/retropect/personal/">Personal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/">Retrospect</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/competition/">Competition</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/personal/">Personal</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vcs/">Vcs</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vcs/git/">Git</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tip/">tip</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">-tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">Conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">Dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">DevOps</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/retrospect/">retrospect</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vcs/">vcs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/경디공/">경디공</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/tip/" style="font-size: 10px;">-tip</a> <a href="/tags/conference/" style="font-size: 10px;">Conference</a> <a href="/tags/dev/" style="font-size: 10px;">Dev</a> <a href="/tags/devops/" style="font-size: 20px;">DevOps</a> <a href="/tags/devops/" style="font-size: 10px;">devops</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/retrospect/" style="font-size: 15px;">retrospect</a> <a href="/tags/tip/" style="font-size: 10px;">tip</a> <a href="/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/tags/vcs/" style="font-size: 15px;">vcs</a> <a href="/tags/경디공/" style="font-size: 10px;">경디공</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Philographer</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2017/02/02/Travis-CI/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

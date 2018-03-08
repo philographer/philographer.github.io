@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PlayNode 2017 행사 | Philographer&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="171109 Play.NodeGraphQL In Action: REST와 이별할 때 생각해야 하는 것들 고통의 근원: 이게 RESTful한가? 계속 질문하게 됨. Path, method, url 설계 등등…. 특징 scheme를 정의하여  validation이 편함 상속: union, interface keyworld recursive query: fra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PlayNode 2017 행사">
+<meta property="og:url" content="http://yoursite.com/2017/11/28/playnode2017/index.html">
+<meta property="og:site_name" content="Philographer&#39;s Blog">
+<meta property="og:description" content="171109 Play.NodeGraphQL In Action: REST와 이별할 때 생각해야 하는 것들 고통의 근원: 이게 RESTful한가? 계속 질문하게 됨. Path, method, url 설계 등등…. 특징 scheme를 정의하여  validation이 편함 상속: union, interface keyworld recursive query: fra">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2017/11/28/playnode2017/playnode.jpg">
+<meta property="og:updated_time" content="2018-03-08T05:00:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PlayNode 2017 행사">
+<meta name="twitter:description" content="171109 Play.NodeGraphQL In Action: REST와 이별할 때 생각해야 하는 것들 고통의 근원: 이게 RESTful한가? 계속 질문하게 됨. Path, method, url 설계 등등…. 특징 scheme를 정의하여  validation이 편함 상속: union, interface keyworld recursive query: fra">
+<meta name="twitter:image" content="http://yoursite.com/2017/11/28/playnode2017/playnode.jpg">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/conference/">Conference</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/conference/dev/">Dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/devops/">DevOps</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retropect/">Retropect</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retropect/personal/">Personal</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/">Retrospect</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/competition/">Competition</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/personal/">Personal</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/vcs/">Vcs</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/vcs/git/">Git</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/tip/">tip</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/conference/">Conference</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/conference/dev/">Dev</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-playnode2017" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        PlayNode 2017 행사
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/11/28/playnode2017/" class="article-date">
+            <time datetime="2017-11-28T13:58:23.000Z" itemprop="datePublished">2017-11-28</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <img src="/2017/11/28/playnode2017/playnode.jpg" title="행사사진">
+<h1 id="171109-Play-Node"><a href="#171109-Play-Node" class="headerlink" title="171109 Play.Node"></a>171109 Play.Node</h1><h2 id="GraphQL-In-Action-REST와-이별할-때-생각해야-하는-것들"><a href="#GraphQL-In-Action-REST와-이별할-때-생각해야-하는-것들" class="headerlink" title="GraphQL In Action: REST와 이별할 때 생각해야 하는 것들"></a>GraphQL In Action: REST와 이별할 때 생각해야 하는 것들</h2><ul>
+<li>고통의 근원: 이게 RESTful한가? 계속 질문하게 됨. Path, method, url 설계 등등….</li>
+<li>특징<ul>
+<li>scheme를 정의하여  validation이 편함</li>
+<li>상속: union, interface keyworld</li>
+<li>recursive query: fragment 사용</li>
+</ul>
+</li>
+</ul>
+<h2 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h2><ul>
+<li>GUI Client<ul>
+<li><a href="https://insomnia.rest/" target="_blank" rel="noopener">Insomnia REST Client</a></li>
+<li><a href="https://github.com/graphql/graphiql" target="_blank" rel="noopener">GitHub - graphql/graphiql</a></li>
+</ul>
+</li>
+<li>BaaS<ul>
+<li><a href="https://www.graph.cool/" target="_blank" rel="noopener">Graphcool - GraphQL Backend Development Framework</a></li>
+</ul>
+</li>
+<li>구현체<ul>
+<li><a href="https://github.com/apollographql/apollo" target="_blank" rel="noopener">GitHub - apollographql/apollo</a></li>
+<li><a href="https://github.com/apollographql/apollo" target="_blank" rel="noopener">GitHub - relay</a></li>
+</ul>
+</li>
+<li>같이쓰면 좋은<ul>
+<li><a href="https://github.com/facebook/dataloader" target="_blank" rel="noopener">GitHub - facebook/dataloader</a> -&gt; 캐싱</li>
+</ul>
+</li>
+</ul>
+<h2 id="lambda-js와-함께-하는-간단한-API-Server-만들기"><a href="#lambda-js와-함께-하는-간단한-API-Server-만들기" class="headerlink" title="lambda.js와 함께 하는 간단한 API Server 만들기"></a>lambda.js와 함께 하는 간단한 API Server 만들기</h2><ul>
+<li><a href="https://github.com/ramda/ramda" target="_blank" rel="noopener">GitHub - ramda/ramda: Practical functional Javascript</a></li>
+<li>순수함수<ul>
+<li>side effect가 없는 함수: 외부 변수에의해 조작이 불가능한</li>
+</ul>
+</li>
+<li>일급함수<ul>
+<li>…</li>
+</ul>
+</li>
+<li>함수를 파고들어갈때<ul>
+<li>R.isNil</li>
+<li>R.compose</li>
+<li>R.last</li>
+<li>R.curry</li>
+<li>R.allPass</li>
+</ul>
+</li>
+<li>알면 좋은 것<ul>
+<li><a href="https://github.com/ramda/ramda/wiki/Cookbook" target="_blank" rel="noopener">Cookbook · ramda/ramda Wiki · GitHub</a></li>
+<li><a href="http://ramdajs.com/repl/" target="_blank" rel="noopener">Try Lambda</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Node-js-API-서버-성능-개선기"><a href="#Node-js-API-서버-성능-개선기" class="headerlink" title="Node.js API 서버 성능 개선기"></a>Node.js API 서버 성능 개선기</h2><ul>
+<li>테스트 준비<ul>
+<li>서버 하나의 한계 파악</li>
+<li>병목구간 확인</li>
+<li>코드 개선 후 비교</li>
+</ul>
+</li>
+<li>테스트 툴<ul>
+<li>로컬 성능 확인<ul>
+<li><a href="https://github.com/shoreditch-ops/artillery" target="_blank" rel="noopener">GitHub - shoreditch-ops/artillery</a></li>
+<li>npm script pre, post keyword</li>
+<li>npx autocannon</li>
+</ul>
+</li>
+<li>서비스<ul>
+<li>Newrelic<ul>
+<li>테스트 시작 끝을 알려고 배포 플래그 api이용함</li>
+</ul>
+</li>
+<li>Nsolid</li>
+<li>RisingStack</li>
+<li>AWS<ul>
+<li>ECS Cluster</li>
+<li>Vagrant로 Virtual Box가 아닌 AWS EC2를 띄움</li>
+<li><a href="https://www.joinc.co.kr/w/Site/Tip/Rsync" target="_blank" rel="noopener">Rsync</a></li>
+<li>Ansible</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>성능 개선</p>
+<ul>
+<li>클러스터 인스턴스 변경</li>
+<li>컨테이너 CPU, 메모리 조정</li>
+<li>DB Pool 사이즈 조정</li>
+</ul>
+</li>
+<li><p>v8 major update(node v6 -&gt; node v8)</p>
+<ul>
+<li>turbofan + ignition</li>
+<li>엄청난 성능향상…</li>
+</ul>
+</li>
+<li>node inspect option (프로파일러)<ul>
+<li>chrome devtools 사용가능</li>
+</ul>
+</li>
+<li>v8 tick profiler<ul>
+<li><code>node -prof</code></li>
+<li>summary</li>
+</ul>
+</li>
+<li>Heap Dump -&gt; 메모리 누수 추적<ul>
+<li>크롬 디버거 -&gt; Memory -&gt; Heap Dump</li>
+<li>Heap Dump를 테스트 이전, 테스트 이부</li>
+</ul>
+</li>
+</ul>
+<h2 id="협력적-멀티태스킹"><a href="#협력적-멀티태스킹" class="headerlink" title="협력적 멀티태스킹"></a>협력적 멀티태스킹</h2><ul>
+<li>Async await 잘 써라<ul>
+<li>Promise를 래핑함, 성능은 잘 나오지 않더라도 메모리 관리등…</li>
+</ul>
+</li>
+</ul>
+<h2 id="클라우드-시대의-node-js가-좋은-이유"><a href="#클라우드-시대의-node-js가-좋은-이유" class="headerlink" title="클라우드 시대의 node.js가 좋은 이유"></a>클라우드 시대의 node.js가 좋은 이유</h2><ul>
+<li>vs JAVA: Memory 차지를 많이함 -&gt; 가지고있는 리소스가 적을때.</li>
+<li><a href="https://github.com/fzaninotto/uptime" target="_blank" rel="noopener">https://github.com/fzaninotto/uptime</a></li>
+<li>ELK Stack</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2017/11/28/playnode2017/" data-id="cjeil8rpq0012ltppfimks3r6" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/philographer" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="linkedin-square" href="https://www.linkedin.com/in/yuhogyun" target="_blank">
+                        <i class="icon fa fa-linkedin-square"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook-square" href="https://www.facebook.com/yoohoogun114" target="_blank">
+                        <i class="icon fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/21/unithon-seminar/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            제6회 유니톤 네트워킹데이 세미나 스피커 후기
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/11/12/absence/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">휴학 회고 (2016.08-2017.08)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/08/mdtconv/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/03/08/mdtconv/mdtconv-logo.jpg)" alt="경디공 3기 활동 마무리 후기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/retropect/">Retropect</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/retropect/personal/">Personal</a></p>
+                            <p class="item-title"><a href="/2018/03/08/mdtconv/" class="title">경디공 3기 활동 마무리 후기</a></p>
+                            <p class="item-date"><time datetime="2018-03-08T05:01:15.000Z" itemprop="datePublished">2018-03-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/06/talentx/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/03/06/talentx/talentx-logo.png)" alt="Talent X 1기 합격 후기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/retrospect/">Retrospect</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/retrospect/personal/">Personal</a></p>
+                            <p class="item-title"><a href="/2018/03/06/talentx/" class="title">Talent X 1기 합격 후기</a></p>
+                            <p class="item-date"><time datetime="2018-03-06T01:32:22.000Z" itemprop="datePublished">2018-03-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/16/gitignore-ds-store/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2018/02/16/gitignore-ds-store/gitignore.png)" alt=".DS_Store 파일을 git에 포함시키지 않기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/tip/">tip</a></p>
+                            <p class="item-title"><a href="/2018/02/16/gitignore-ds-store/" class="title">.DS_Store 파일을 git에 포함시키지 않기</a></p>
+                            <p class="item-date"><time datetime="2018-02-16T10:31:33.000Z" itemprop="datePublished">2018-02-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/15/vscode-open-bash/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.stack.imgur.com/Ng886.png)" alt="Bash에서 Visual Studio Code 열기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/tip/">tip</a></p>
+                            <p class="item-title"><a href="/2018/02/15/vscode-open-bash/" class="title">Bash에서 Visual Studio Code 열기</a></p>
+                            <p class="item-date"><time datetime="2018-02-15T14:56:26.000Z" itemprop="datePublished">2018-02-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/15/circleci-rn4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.ytimg.com/vi/Qp-BA9e0TnA/maxresdefault.jpg)" alt="Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/devops/">DevOps</a></p>
+                            <p class="item-title"><a href="/2018/02/15/circleci-rn4/" class="title">Fastlane, CircleCI를 이용하여 React Native DevOps 도입기 (4)</a></p>
+                            <p class="item-date"><time datetime="2018-02-15T10:38:28.000Z" itemprop="datePublished">2018-02-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/conference/">Conference</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/conference/dev/">Dev</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/devops/">DevOps</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/retropect/">Retropect</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/retropect/personal/">Personal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/">Retrospect</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/competition/">Competition</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/retrospect/personal/">Personal</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vcs/">Vcs</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vcs/git/">Git</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/tip/">tip</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">-tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conference/">Conference</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">Dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">DevOps</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/">devops</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/retrospect/">retrospect</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vcs/">vcs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/경디공/">경디공</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/tip/" style="font-size: 10px;">-tip</a> <a href="/tags/conference/" style="font-size: 10px;">Conference</a> <a href="/tags/dev/" style="font-size: 10px;">Dev</a> <a href="/tags/devops/" style="font-size: 20px;">DevOps</a> <a href="/tags/devops/" style="font-size: 10px;">devops</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/retrospect/" style="font-size: 15px;">retrospect</a> <a href="/tags/tip/" style="font-size: 10px;">tip</a> <a href="/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/tags/vcs/" style="font-size: 15px;">vcs</a> <a href="/tags/경디공/" style="font-size: 10px;">경디공</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Philographer</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2017/11/28/playnode2017/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
