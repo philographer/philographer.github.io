@@ -8,7 +8,7 @@
 
     <url>
         <loc>http://yoursite.com/2018/03/12/mdtconv2/</loc>
-        <lastmod>2018-03-12T03:13:09.916Z</lastmod>
+        <lastmod>2018-03-12T03:22:20.273Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -71,7 +71,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/02/15/circleci-rn3/</loc>
+        <loc>http://yoursite.com/2018/02/15/circleci-rn2/</loc>
         <lastmod>2018-03-08T05:00:57.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -79,7 +79,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/02/15/circleci-rn2/</loc>
+        <loc>http://yoursite.com/2018/02/15/circleci-rn3/</loc>
         <lastmod>2018-03-08T05:00:57.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -119,7 +119,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/11/28/playnode2017/</loc>
+        <loc>http://yoursite.com/2017/01/23/objectArraySortByKey/</loc>
         <lastmod>2018-03-08T05:00:57.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -127,7 +127,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/01/23/objectArraySortByKey/</loc>
+        <loc>http://yoursite.com/2017/11/28/playnode2017/</loc>
         <lastmod>2018-03-08T05:00:57.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
