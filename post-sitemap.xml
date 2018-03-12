@@ -8,7 +8,7 @@
 
     <url>
         <loc>http://yoursite.com/2018/03/12/mdtconv2/</loc>
-        <lastmod>2018-03-12T03:23:55.607Z</lastmod>
+        <lastmod>2018-03-12T03:24:22.124Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -71,7 +71,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/02/15/circleci-rn2/</loc>
+        <loc>http://yoursite.com/2018/02/15/circleci-rn4/</loc>
         <lastmod>2018-03-08T05:00:57.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -87,7 +87,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/01/27/git-lifecycle/</loc>
+        <loc>http://yoursite.com/2018/02/15/circleci-rn2/</loc>
         <lastmod>2018-03-08T05:00:57.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -95,7 +95,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/02/15/circleci-rn4/</loc>
+        <loc>http://yoursite.com/2017/01/27/git-lifecycle/</loc>
         <lastmod>2018-03-08T05:00:57.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
