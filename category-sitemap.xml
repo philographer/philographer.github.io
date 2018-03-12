@@ -64,14 +64,14 @@
 
     <url>
         <loc>http://yoursite.com/categories/retrospect/</loc>
-        <lastmod>2018-03-08T14:15:20.646Z</lastmod>
+        <lastmod>2018-03-12T03:23:55.607Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/categories/retrospect/personal/</loc>
-        <lastmod>2018-03-08T14:15:20.646Z</lastmod>
+        <lastmod>2018-03-12T03:23:55.607Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
