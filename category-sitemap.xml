@@ -63,22 +63,22 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/categories/retrospect/personal/</loc>
-        <lastmod>2018-03-08T14:15:20.646Z</lastmod>
+        <loc>http://yoursite.com/categories/retrospect/project/</loc>
+        <lastmod>2018-03-12T09:51:08.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/categories/retrospect/</loc>
-        <lastmod>2018-03-12T09:51:08.000Z</lastmod>
+        <lastmod>2018-03-18T05:11:40.012Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/categories/retrospect/project/</loc>
-        <lastmod>2018-03-12T09:51:08.000Z</lastmod>
+        <loc>http://yoursite.com/categories/retrospect/personal/</loc>
+        <lastmod>2018-03-18T05:11:40.012Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
