@@ -58,6 +58,13 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/tags/tip/</loc>
+        <lastmod>2018-03-08T05:00:57.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://yoursite.com/tags/conference/</loc>
         <lastmod>2018-03-08T05:00:57.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -66,13 +73,6 @@
 
     <url>
         <loc>http://yoursite.com/tags/dev/</loc>
-        <lastmod>2018-03-08T05:00:57.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/tip/</loc>
         <lastmod>2018-03-08T05:00:57.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
