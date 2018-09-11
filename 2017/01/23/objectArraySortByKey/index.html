@@ -2,13 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="google-site-verification" content="0WeBgtA9J4bfKmdy6exEqqrEq5HwipGIOKuGONkFjv8" />
+    <meta name="google-site-verification" content="0WeBgtA9J4bfKmdy6exEqqrEq5HwipGIOKuGONkFjv8">
     
     <title>Object Array를 key에 의해 정렬하기 | Philographer&#39;s Blog</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="javascript" />
+        <meta name="keywords" content="javascript">
     
     <meta name="description" content="개요개발하고 있는 Application에서 Object의 Array를 Key에 의해 정렬할 일이 생겼다.Array에 int나 string이 담겨 있을 때는, 그냥 sort() 메소드를 사용하면 되지만, Object가 들어있을 때는 조금 까다롭다. Array.sort() 함수요즈음, Javascript에 대한 메소드를 검색하다보면, MDN(Mozilla De">
 <meta name="keywords" content="javascript">
@@ -23,7 +23,7 @@
 <meta name="twitter:title" content="Object Array를 key에 의해 정렬하기">
 <meta name="twitter:description" content="개요개발하고 있는 Application에서 Object의 Array를 Key에 의해 정렬할 일이 생겼다.Array에 int나 string이 담겨 있을 때는, 그냥 sort() 메소드를 사용하면 되지만, Object가 들어있을 때는 조금 까다롭다. Array.sort() 함수요즈음, Javascript에 대한 메소드를 검색하다보면, MDN(Mozilla De">
     
-    <link rel="canonical" href="https://philographer.github.io/2017/01/23/objectarraysortbykey/"/>
+    <link rel="canonical" href="https://philographer.github.io/2017/01/23/objectarraysortbykey/">
     
 
     
@@ -58,7 +58,7 @@ ga('send', 'pageview');
 
 
 </head>
-
+</html>
 <body>
     <div id="wrap">
         <header id="header">
@@ -76,13 +76,13 @@ ga('send', 'pageview');
                     <div class="nav-container-inner">
                         <ul id="main-nav">
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
                                         <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/conference/">Conference</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/conference/dev/">Dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/devops/">DevOps</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/javascript/">Javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/">Retrospect</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/competition/">Competition</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/personal/">Personal</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/retrospect/project/">Project</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/vcs/">Vcs</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/vcs/git/">Git</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/tip/">tip</a></li></ul>
                                     
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
@@ -91,14 +91,14 @@ ga('send', 'pageview');
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <input type="text" class="ins-search-input" placeholder="Type something...">
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -143,7 +143,7 @@ ga('send', 'pageview');
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-objectArraySortByKey" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-objectArraySortByKey" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -193,10 +193,10 @@ ga('send', 'pageview');
 <h1 id="Array-sort-함수의-알고리즘-및-내부"><a href="#Array-sort-함수의-알고리즘-및-내부" class="headerlink" title="Array.sort() 함수의 알고리즘 및 내부"></a>Array.sort() 함수의 알고리즘 및 내부</h1><p>원하던 Object의 배열은 끝이 났지만, 한 번 더 깊이 들어가 보자.<br>sort()함수는 어떤 정렬을 사용할까? Bubble sort? Merge sort?  Select sort?<br>어떤 정렬인지 한번 내부를 보자.<del>예제를 써보고, 안 되면 구글링을 해보자</del></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> unSortedObjArr = [&#123;</span><br><span class="line">    c: <span class="number">4</span>,</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    c: <span class="number">3</span></span><br><span class="line">&#125;,&#123;</span><br><span class="line">    c: <span class="number">2</span></span><br><span class="line">&#125;,&#123;</span><br><span class="line">    c: <span class="number">1</span></span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sortedObjArr = unSortedObjArr.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a.c);</span><br><span class="line">    <span class="built_in">console</span>.log(b.c);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'========='</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> a.c - b.c;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sortedObjArr);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*  </span></span><br><span class="line"><span class="comment">4</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">=========</span></span><br><span class="line"><span class="comment">4</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">=========</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">=========</span></span><br><span class="line"><span class="comment">4</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">=========</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">=========</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">=========</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 <p>무언가 이상하다고 생각하지 않는가? 그냥 봐서는 어떤 정렬인지 모르겠다.</p>
-<p>Google에 검색해 보았다. (검색어: javascript sort function algorithm)<br><a href="http://stackoverflow.com/questions/234683/javascript-array-sort-implementation" target="_blank" rel="noopener">algorithm - Javascript Array.sort implementation? - Stack Overflow</a></p>
+<p>Google에 검색해 보았다. (검색어: javascript sort function algorithm)<br><a href="http://stackoverflow.com/questions/234683/javascript-array-sort-implementation" rel="external nofollow noopener noreferrer" target="_blank">algorithm - Javascript Array.sort implementation? - Stack Overflow</a></p>
 <u>요약해 보자면,</u>
 
-<p>스택 오버플로는 선택된(첫 번째) 답글이 진리이지만, 답글보다 많이 vote를 받은 comment에 보면 이 답변은 선택되지 말았어야 했다고 적혀있다.<br>다음 답글을 보니 첫 번째 답글보다 up vote가 많다. 뭔가 읽을 만 한가보다<br>짧게 요약하자면 크롬이나 사파리에서 쓰는 <a href="http://zetawiki.com/wiki/%EC%9B%B9%ED%82%B7" target="_blank" rel="noopener">웹킷</a>에서는</p>
+<p>스택 오버플로는 선택된(첫 번째) 답글이 진리이지만, 답글보다 많이 vote를 받은 comment에 보면 이 답변은 선택되지 말았어야 했다고 적혀있다.<br>다음 답글을 보니 첫 번째 답글보다 up vote가 많다. 뭔가 읽을 만 한가보다<br>짧게 요약하자면 크롬이나 사파리에서 쓰는 <a href="http://zetawiki.com/wiki/%EC%9B%B9%ED%82%B7" rel="external nofollow noopener noreferrer" target="_blank">웹킷</a>에서는</p>
 <ol>
 <li>Number type에서는 quicksort를 사용</li>
 <li>String에서 가능하면 quicksort를, 불가능하면 mergesort를 사용</li>
@@ -210,7 +210,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://philographer.github.io/2017/01/23/objectArraySortByKey/" data-id="cjlxar5rk000gg77os20j69lj" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://philographer.github.io/2017/01/23/objectArraySortByKey/" data-id="cjlxawh35000ih57obh0lziqu" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -295,7 +295,7 @@ ga('send', 'pageview');
             
                 
                 <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/philographer" target="_blank">
+                    <a class="social-tooltip" title="github" href="https://github.com/philographer" target="_blank" rel="external nofollow noopener noreferrer">
                         <i class="icon fa fa-github"></i>
                     </a>
                 </li>
@@ -303,7 +303,7 @@ ga('send', 'pageview');
             
                 
                 <li>
-                    <a class="social-tooltip" title="linkedin-square" href="https://www.linkedin.com/in/yuhogyun" target="_blank">
+                    <a class="social-tooltip" title="linkedin-square" href="https://www.linkedin.com/in/yuhogyun" target="_blank" rel="external nofollow noopener noreferrer">
                         <i class="icon fa fa-linkedin-square"></i>
                     </a>
                 </li>
@@ -311,7 +311,7 @@ ga('send', 'pageview');
             
                 
                 <li>
-                    <a class="social-tooltip" title="facebook-square" href="https://www.facebook.com/yoohoogun114" target="_blank">
+                    <a class="social-tooltip" title="facebook-square" href="https://www.facebook.com/yoohoogun114" target="_blank" rel="external nofollow noopener noreferrer">
                         <i class="icon fa fa-facebook-square"></i>
                     </a>
                 </li>
@@ -498,7 +498,7 @@ ga('send', 'pageview');
             <ul>
                 
                     <li>
-                        <a href="http://hexo.io">Hexo</a>
+                        <a href="http://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a>
                     </li>
                 
             </ul>
@@ -570,4 +570,4 @@ ga('send', 'pageview');
 
     </div>
 </body>
-</html>
+
