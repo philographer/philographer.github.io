@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>http://yoursite.com</loc>
+        <loc>https://philographer.github.io</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/09/03/job-search-1/</loc>
+        <loc>https://philographer.github.io/2018/09/03/job-search-1/</loc>
         <lastmod>2018-09-06T12:03:20.944Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -15,7 +15,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/04/22/flex/</loc>
+        <loc>https://philographer.github.io/2018/04/22/flex/</loc>
         <lastmod>2018-04-22T06:57:00.192Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -23,7 +23,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/03/18/retire-mondrian/</loc>
+        <loc>https://philographer.github.io/2018/03/18/retire-mondrian/</loc>
         <lastmod>2018-03-18T05:11:40.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -31,7 +31,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/03/12/mdtconv2/</loc>
+        <loc>https://philographer.github.io/2018/03/12/mdtconv2/</loc>
         <lastmod>2018-03-12T09:51:08.490Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -39,7 +39,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/03/08/mdtconv/</loc>
+        <loc>https://philographer.github.io/2018/03/08/mdtconv/</loc>
         <lastmod>2018-03-08T14:15:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -47,7 +47,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/02/16/webhook/</loc>
+        <loc>https://philographer.github.io/2017/02/16/webhook/</loc>
         <lastmod>2018-03-08T05:00:57.724Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -55,7 +55,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/02/15/vscode-open-bash/</loc>
+        <loc>https://philographer.github.io/2018/02/15/vscode-open-bash/</loc>
         <lastmod>2018-03-08T05:00:57.723Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -63,7 +63,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/01/21/unithon-seminar/</loc>
+        <loc>https://philographer.github.io/2018/01/21/unithon-seminar/</loc>
         <lastmod>2018-03-08T05:00:57.718Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -71,7 +71,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/03/06/talentx/</loc>
+        <loc>https://philographer.github.io/2018/03/06/talentx/</loc>
         <lastmod>2018-03-08T05:00:57.712Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -79,7 +79,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/01/23/objectArraySortByKey/</loc>
+        <loc>https://philographer.github.io/2017/01/23/objectArraySortByKey/</loc>
         <lastmod>2018-03-08T05:00:57.711Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -87,7 +87,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/11/28/playnode2017/</loc>
+        <loc>https://philographer.github.io/2017/11/28/playnode2017/</loc>
         <lastmod>2018-03-08T05:00:57.711Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -95,7 +95,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/01/27/gitignore/</loc>
+        <loc>https://philographer.github.io/2017/01/27/gitignore/</loc>
         <lastmod>2018-03-08T05:00:57.708Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -103,7 +103,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/02/16/gitignore-ds-store/</loc>
+        <loc>https://philographer.github.io/2018/02/16/gitignore-ds-store/</loc>
         <lastmod>2018-03-08T05:00:57.707Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -111,7 +111,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/02/15/circleci-rn4/</loc>
+        <loc>https://philographer.github.io/2018/02/15/circleci-rn4/</loc>
         <lastmod>2018-03-08T05:00:57.706Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -119,7 +119,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/01/27/git-lifecycle/</loc>
+        <loc>https://philographer.github.io/2017/01/27/git-lifecycle/</loc>
         <lastmod>2018-03-08T05:00:57.706Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -127,7 +127,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/02/15/circleci-rn1/</loc>
+        <loc>https://philographer.github.io/2018/02/15/circleci-rn1/</loc>
         <lastmod>2018-03-08T05:00:57.705Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -135,7 +135,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/02/15/circleci-rn3/</loc>
+        <loc>https://philographer.github.io/2018/02/15/circleci-rn3/</loc>
         <lastmod>2018-03-08T05:00:57.705Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -143,7 +143,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/02/15/circleci-rn2/</loc>
+        <loc>https://philographer.github.io/2018/02/15/circleci-rn2/</loc>
         <lastmod>2018-03-08T05:00:57.705Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -151,7 +151,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2018/01/30/ausg-seminar/</loc>
+        <loc>https://philographer.github.io/2018/01/30/ausg-seminar/</loc>
         <lastmod>2018-03-08T05:00:57.696Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -159,7 +159,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/11/12/absence/</loc>
+        <loc>https://philographer.github.io/2017/11/12/absence/</loc>
         <lastmod>2018-03-08T05:00:57.695Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -167,7 +167,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/02/02/Travis-CI/</loc>
+        <loc>https://philographer.github.io/2017/02/02/Travis-CI/</loc>
         <lastmod>2018-03-08T05:00:57.690Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -175,7 +175,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/01/30/Node-Express-Typescript-Mongo-project-boilerplate/</loc>
+        <loc>https://philographer.github.io/2017/01/30/Node-Express-Typescript-Mongo-project-boilerplate/</loc>
         <lastmod>2018-03-08T05:00:57.682Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -183,7 +183,7 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2017/02/07/4th-unithon/</loc>
+        <loc>https://philographer.github.io/2017/02/07/4th-unithon/</loc>
         <lastmod>2018-03-08T05:00:57.635Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

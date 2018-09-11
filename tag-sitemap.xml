@@ -2,91 +2,91 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://yoursite.com/tags/typescript/</loc>
+        <loc>https://philographer.github.io/tags/typescript/</loc>
         <lastmod>2018-03-08T05:00:57.682Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/devops/</loc>
+        <loc>https://philographer.github.io/tags/devops/</loc>
         <lastmod>2018-03-08T05:00:57.690Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/devops/</loc>
+        <loc>https://philographer.github.io/tags/devops/</loc>
         <lastmod>2018-03-08T05:00:57.706Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/git/</loc>
+        <loc>https://philographer.github.io/tags/git/</loc>
         <lastmod>2018-03-08T05:00:57.706Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/tip/</loc>
+        <loc>https://philographer.github.io/tags/tip/</loc>
         <lastmod>2018-03-08T05:00:57.707Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/javascript/</loc>
+        <loc>https://philographer.github.io/tags/javascript/</loc>
         <lastmod>2018-03-08T05:00:57.711Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/retrospect/</loc>
+        <loc>https://philographer.github.io/tags/retrospect/</loc>
         <lastmod>2018-03-08T05:00:57.712Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/conference/</loc>
+        <loc>https://philographer.github.io/tags/conference/</loc>
         <lastmod>2018-03-08T05:00:57.718Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/dev/</loc>
+        <loc>https://philographer.github.io/tags/dev/</loc>
         <lastmod>2018-03-08T05:00:57.718Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/vcs/</loc>
+        <loc>https://philographer.github.io/tags/vcs/</loc>
         <lastmod>2018-03-08T05:00:57.724Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/%EA%B2%BD%EB%94%94%EA%B3%B5/</loc>
+        <loc>https://philographer.github.io/tags/%EA%B2%BD%EB%94%94%EA%B3%B5/</loc>
         <lastmod>2018-03-12T09:51:08.490Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/tip/</loc>
+        <loc>https://philographer.github.io/tags/tip/</loc>
         <lastmod>2018-04-22T06:57:00.192Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/%ED%9B%84%EA%B8%B0/</loc>
+        <loc>https://philographer.github.io/tags/%ED%9B%84%EA%B8%B0/</loc>
         <lastmod>2018-09-06T12:03:20.944Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
